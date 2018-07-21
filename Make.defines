@@ -1,0 +1,7 @@
+#对于gcc编译选项，应该包含O2优化指令
+THRD_LIB_INC=../include
+THRD_LIB_PATH=../libs/libmath.a
+CC=gcc
+#测试用CFLAGS
+CFLAGS=-O2 -g -Wall -DDEBUG -Wextra -Wpointer-arith -Wshadow -Wconversion -Wfloat-equal  -I${THRD_LIB_INC}
+
