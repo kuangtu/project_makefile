@@ -71,7 +71,6 @@ ifeq ($(USE_VERSION), true)
 else
 	@echo "Beginning release build"
 endif
-	@echo "step2"
 	@$(START_TIME)
 	@$(MAKE) all --no-print-directory
 	@echo -n "Total build time: "
@@ -94,7 +93,6 @@ endif
 .PHONY: dirs
 dirs:
 	@echo $(SOURCES)
-	@echo "step1"
 	@echo "Creating directories"
 	@mkdir -p $(BIN_PATH)
 
@@ -110,14 +108,12 @@ clean:
 
 # Main rule, checks the executable and symlinks to the output
 all: $(BIN_PATH)/$(BIN_NAME)
-	@echo "step5"
 	@echo "Making symlink: $(BIN_NAME) -> $<"
 	@$(RM) $(BIN_NAME)
 	@ln -s $(BIN_PATH)/$(BIN_NAME) $(BIN_NAME)
 
 # Link the executable
 $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
-	@echo "step4"
 	@echo "Linking: $@"
 	@$(START_TIME)
 	$(CC) $(OBJECTS) $(LDFLAGS) ${THRD_LIB_PATH} -o $@
@@ -135,7 +131,6 @@ $(BIN_PATH)/$(BIN_NAME): $(OBJECTS)
 # @echo ${OBJECTS}
 # @echo ${DEPS}
 $(SRC_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
-	@echo "step3"
 	@echo "Compiling: $< -> $@"
 	@$(START_TIME)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LINK_FLAGS) -MP -MMD -c $< -o $@
